@@ -14,20 +14,31 @@ def timer(func):
 class Solution:
     @timer
     def solve(self, *args):
-        digits = args[0]
-      
-        string = "512345"
-        string_set = set(string)
-        print(string_set)
-        
+        nums = args[0]
+        target = args[1]
+        l, r = 0, len(nums) - 1
+
+        while l < r:
+            mid = (l + r) // 2
+            if nums[mid] < target:
+                l = mid + 1
+            elif nums[mid] > target:
+                r = mid - 1 
+            else:
+                return mid
+        return -1
+
+
+
+
 
 def test_cases():
     return [
-        # Add your test cases here
         # Example: (inputs, expected_output)
-        # ([1, 2, 3], 6),
-        # ([4, 5, 6], 15),
-        (['?1???2??3???4?'], '12313')
+
+        ([[-1,0,3,5,9,12], 9], 4),  
+
+
     ]
 
 @timer
@@ -55,3 +66,31 @@ def practice():
 
 if __name__ == "__main__":
     practice()
+
+
+            # assigned_lockers = {}
+        # free_lockers = []
+        # last_assigned = 0
+        # next_locker = 1
+
+        # for client in clients:
+        #     if client in assigned_lockers:
+        #         # Free the locker if client already has one assigned
+        #         freed_locker = assigned_lockers.pop(client)
+        #         free_lockers.append(freed_locker)
+        #     else:
+        #         # Assign the next available locker
+        #         if free_lockers:
+        #             min_avail = min(free_lockers)
+        #             # Use a previously freed locker if available
+        #             locker_to_assign = free_lockers.pop(free_lockers.index(min_avail))
+        #         else:
+        #             # Otherwise, use the next new locker
+        #             locker_to_assign = next_locker
+        #             next_locker += 1
+                
+        #         assigned_lockers[client] = locker_to_assign
+        #         last_assigned = locker_to_assign
+
+        # return last_assigned
+                
