@@ -51,3 +51,16 @@ class Solution:
                 l = k + 1
         return res
     
+    # 153. Find Minimum in Rotated Sorted Array / Medium / 4:37 minutes / (https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
+    def findMin(self, nums: List[int]) -> int:
+        # return min(nums)
+        l, r = 0, len(nums) - 1
+
+        while l < r:
+            mid = (l + r) // 2
+
+            if nums[mid] > nums[r]:
+                l = mid + 1
+            else:
+                r = mid 
+        return nums[r]
