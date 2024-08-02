@@ -14,27 +14,19 @@ def timer(func):
 class Solution:
     @timer
     def solve(self, *args):
-        matrix = args[0]
+        nums = args[0]
         target = args[1]
-        l, r = 0, len(matrix) - 1
-        while l <= r:
+        l, r = 0, len(nums) - 1
+
+        while l < r:
             mid = (l + r) // 2
-            if target > matrix[mid][-1]:
+            
+            if nums[mid] > target and target < nums[r]:
                 l = mid + 1
-            elif target < matrix[mid][0]:
-                r = mid - 1
             else:
-                mid_l, mid_r = 0, len(matrix[mid]) - 1
-                while mid_l <= mid_r:
-                    m = (mid_l + mid_r) //2
-                    if target > matrix[mid][m]:
-                        mid_l  = m + 1
-                    elif target < matrix[mid][m]:
-                        mid_r = m - 1
-                    else: 
-                        return True 
-                break
-        return False
+                r = mid
+
+        return r
             
 
 
@@ -45,7 +37,7 @@ def test_cases():
     return [
         # Example: (inputs, expected_output)
 
-        ([[[1,3,5,7],[10,11,16,20],[23,30,34,60]], 13], False),  
+        ([[4,5,6,7,0,1,2], 0], 4),    
 
 
     ]
