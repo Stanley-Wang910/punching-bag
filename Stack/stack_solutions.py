@@ -1,4 +1,4 @@
-class Solution:
+class Stack:
     # 20. Valid Parentheses / Easy / 15:30 minutes / (https://leetcode.com/problems/valid-parentheses/)
     def isValid(self, s: str) -> bool:
         stack = []

@@ -1,5 +1,5 @@
 
-class Solution:
+class ArraysHashing:
     # 217. Contains Duplicate / Easy / 4 minutes / (https://leetcode.com/problems/contains-duplicate/)
     def containsDuplicate(self, nums: List[int]) -> bool:
         num_set = set()

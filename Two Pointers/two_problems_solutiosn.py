@@ -1,4 +1,4 @@
-class Solution:
+class TwoPointers:
     # 125. Valid Palindrome / Easy / 10 minutes / (https://leetcode.com/problems/valid-palindrome/)
     def isPalindrome(self, s: str) -> bool:
         if not s:

@@ -1,4 +1,4 @@
-class Solution:
+class BinarySearch:
     # 704. Binary Search / Easy / 9 minutes / (https://leetcode.com/problems/binary-search/)
     def search(self, nums: List[int], target: int) -> int:
         l, r = 0, len(nums) - 1
