@@ -43,3 +43,33 @@ class LinkedList:
             tail.next = l2
 
         return dummy.next
+
+
+    # 143. Reorder List / Medium / 37 minutes / (https://leetcode.com/problems/reorder-list/)
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        # Get first and second half of LL with slow and fast pointer
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        second = slow.next
+        prev = slow.next = None
+
+        # Reverse second half
+        while second:
+            temp = second.next
+            second.next = prev
+            prev = second
+            second = temp # second half at null, prev set to last node
+
+        # merge two halfs 
+        first,second = head, prev 
+        # second half may be shorter
+        while second:
+            temp1, temp2 = first.next, second.next
+            first.next = second
+            second.next =  temp1
+            first = temp1
+            second = temp2
+
