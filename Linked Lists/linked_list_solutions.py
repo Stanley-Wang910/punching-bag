@@ -73,3 +73,19 @@ class LinkedList:
             first = temp1
             second = temp2
 
+    # 19. Remove Nth Node From End of List / Medium / 27 minutes / (https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        # Two pointers
+        dummy = ListNode(0, head)
+        first, second = dummy, head
+        for i in range(n):
+            if second:
+                second = second.next
+        while second:
+            first = first.next
+            second = second.next
+        print(first, second)
+        first.next = first.next.next
+        return dummy.next # in case you have to remove head of node, dummy.next will always point to the head of the LL
+
+        
