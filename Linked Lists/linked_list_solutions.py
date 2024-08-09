@@ -89,3 +89,41 @@ class LinkedList:
         return dummy.next # in case you have to remove head of node, dummy.next will always point to the head of the LL
 
         
+    # 138. Copy List with Random Pointer / Medium / 36 minutes / (https://leetcode.com/problems/copy-list-with-random-pointer/)
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        # Two Passes
+        # Node Creation, then Linkage
+        hash_copy = { None: None }
+        cur = head
+        # Node Creation
+        while cur:
+            hash_copy[cur] = Node(cur.val)
+            cur = cur.next
+        
+        # Linkage
+        cur = head
+        while cur:
+            copy = hash_copy[cur]
+            copy.next = hash_copy[cur.next]
+            copy.random = hash_copy[cur.random]
+            cur = cur.next
+
+        return hash_copy[head]
+
+    # 2. Add Two Numbers / Medium / 46 minutes / (https://leetcode.com/problems/add-two-numbers/)
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        # Need Carry
+        dummy = ListNode()
+        cur = dummy
+        carry = 0
+        while l1 or l2 or carry:
+            v1 = l1.val if l1 else 0
+            v2 = l2.val if l2 else 0
+            val = v1 + v2 + carry
+            carry = val // 10 
+            val = val % 10
+            cur.next = ListNode(val)
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
+            cur = cur.next
+        return dummy.next

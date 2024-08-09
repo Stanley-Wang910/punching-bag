@@ -66,31 +66,3 @@ def practice():
 
 if __name__ == "__main__":
     practice()
-
-
-            # assigned_lockers = {}
-        # free_lockers = []
-        # last_assigned = 0
-        # next_locker = 1
-
-        # for client in clients:
-        #     if client in assigned_lockers:
-        #         # Free the locker if client already has one assigned
-        #         freed_locker = assigned_lockers.pop(client)
-        #         free_lockers.append(freed_locker)
-        #     else:
-        #         # Assign the next available locker
-        #         if free_lockers:
-        #             min_avail = min(free_lockers)
-        #             # Use a previously freed locker if available
-        #             locker_to_assign = free_lockers.pop(free_lockers.index(min_avail))
-        #         else:
-        #             # Otherwise, use the next new locker
-        #             locker_to_assign = next_locker
-        #             next_locker += 1
-                
-        #         assigned_lockers[client] = locker_to_assign
-        #         last_assigned = locker_to_assign
-
-        # return last_assigned
-                
