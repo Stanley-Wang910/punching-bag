@@ -127,3 +127,16 @@ class LinkedList:
             l2 = l2.next if l2 else None
             cur = cur.next
         return dummy.next
+
+    # 141. Linked List Cycle / Easy / 20 minutes / (https://leetcode.com/problems/linked-list-cycle/)
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = head 
+        fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if fast == slow:
+                return True
+        return False
+
+        
