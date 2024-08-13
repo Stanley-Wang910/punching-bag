@@ -41,6 +41,7 @@ class ArraysHashing:
             seen[n] = i
 
     # 49. Group Anagrams / Medium / 14 minutes / (https://leetcode.com/problems/group-anagrams/)
+    # Review 49, 13:21 min 
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         string_dict = {}
         for s in strs:
@@ -60,6 +61,23 @@ class ArraysHashing:
             else: seen_values[num] = 1
         sorted_dict = dict(sorted(seen_values.items(), key=lambda item: item[1], reverse=True))
         return list(sorted_dict.keys())[:k]
+
+        # Review 347 10 minutes
+        def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+            seen = {}
+            for n in nums:
+                seen[n] = seen.get(n, 0) + 1
+            
+            res = []
+            while k:
+                max_val = max(seen.values())
+                for key,val in seen.items():
+                    if val == max_val:
+                        res.append(key)
+                        k -= 1
+                        break
+                del seen[key]
+            return res
 
     # Encode and decode strings / Medium / 21 minutes / (https://neetcode.io/problems/string-encode-and-decode)
     def encode(self, strs: List[str]) -> str:
