@@ -155,3 +155,53 @@ class LinkedList:
             slow2 = nums[slow2]
             if slow == slow2:
                 return slow # The number 
+
+
+    # 146. LRU Cache / Medium / 50 minutes / (https://leetcode.com/problems/lru-cache/)
+    class Node:
+        def __init__(self, key, val):
+            self.key = key
+            self.val = val
+            self.prev = self.next = None
+
+    class LRUCache:
+        def __init__(self, capacity: int):
+            self.cache = {}
+            self.capacity = capacity
+            self.LRU, self.MRU = Node(0,0), Node(0,0)
+            self.LRU.next = self.MRU
+            self.MRU.prev = self.LRU
+
+        def insert(self, node):
+            mru = self.MRU
+            prv = self.MRU.prev
+            prv.next = node
+            mru.prev = node
+            node.next = mru
+            node.prev = prv
+        
+        def remove(self, node):
+            left = node.prev
+            right = node.next
+            right.prev = left
+            left.next = right
+
+        def get(self, key: int) -> int:
+            if key in self.cache:
+                self.remove(self.cache[key])
+                self.insert(self.cache[key])
+                return self.cache[key].val
+            else:
+                return -1
+            
+        def put(self, key: int, val: int) -> None:
+            if key in self.cache:
+                self.remove(self.cache[key]) # access prev initialized node
+            self.cache[key] = Node(key, val)
+            self.insert(self.cache[key])
+
+            if len(self.cache) > self.capacity:
+                lru = self.LRU.next # create reference so hash deletion will point to correct node
+                self.remove(lru)
+                del self.cache[lru.key]
+                
