@@ -19,6 +19,22 @@ class TwoPointers:
                 j -= 1
         return True
     
+        # Review - 3:43 minutes
+        def isPalindrome(self, s: str) -> bool:
+            clean = ''
+            for c in s:
+                if c.isalpha() or c.isnumeric():
+                    clean += c.lower()
+            l, r = 0, len(clean) - 1
+
+            while l <= r:
+                if clean[l] != clean[r]:
+                    return False
+                l += 1
+                r -= 1
+            return True
+
+    
     # 167. Two Sum II - Input array is sorted / Medium / 12 minutes / (https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
         l, r = 0, len(numbers) - 1
@@ -33,6 +49,7 @@ class TwoPointers:
                 return [l + 1, r + 1]
 
     # 15. 3Sum / Medium / 30  minutes / (https://leetcode.com/problems/3sum/)
+    # Review - Some amount of time, review again
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         res = []
         nums.sort()

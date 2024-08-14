@@ -15,17 +15,28 @@ class Solution:
     @timer
     def solve(self, *args):
         nums = args[0]
-        target = args[1]
-        l, r = 0, len(nums) - 1
+        res = []
+        nums.sort()
+        for i, n in enumerate(nums):
+            if nums[i-1] == n and i < len(nums):
+                continue
+                
+            l, r = i + 1, len(nums) -1 
 
-        while l < r:
-            mid = (l + r) // 2
-            
-            if nums[mid] > target and target < nums[r]:
-                l = mid + 1
-            else:
-                r = mid
-        return r
+            while l < r:
+                three_s = nums[l] + nums[r] + n
+                if three_s < 0:
+                    l += 1
+                elif three_s > 0:
+                    r -= 1
+                else:
+                    res.append([n, nums[l], nums[r]])
+                    l += 1
+                    while l < r and nums[l] == nums[l-1]:
+                        l += 1
+                    
+        return res
+
             
 
 
@@ -36,7 +47,7 @@ def test_cases():
     return [
         # Example: (inputs, expected_output)
 
-        ([[4,5,6,7,0,1,2], 0], 4),    
+        ([[-1,0,1,2,-1,-4]], [[-1,-1,2],[-1,0,1]]),     
 
 
     ]
