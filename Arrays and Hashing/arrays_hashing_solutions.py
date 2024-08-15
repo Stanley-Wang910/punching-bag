@@ -151,6 +151,20 @@ class ArraysHashing:
                 count = 1
             max_count = max(max_count, count)
         return max_count
+        # Review - 20 minutes O(n) Time
+        def longestConsecutive(self, nums: List[int]) -> int:
+            num_set = set(nums)
+            longest = 0
+            for n in nums:
+                # check if start of sqn
+                if (n-1) not in num_set:
+                    length = 1 # start of sqn
+                    while (n + length) in num_set:
+                        length += 1
+                    longest = max(length, longest)
+            return longest
+
+
 
 
 
