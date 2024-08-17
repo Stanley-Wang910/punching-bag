@@ -21,6 +21,7 @@ class BinarySearch:
             if target > matrix[mid][-1]:
                 l = mid + 1
             elif target < matrix[mid][0]:
+                print(f'asd')
                 r = mid - 1
             else:
                 mid_l, mid_r = 0, len(matrix[mid]) - 1

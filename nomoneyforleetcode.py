@@ -14,30 +14,21 @@ def timer(func):
 class Solution:
     @timer
     def solve(self, *args):
-        nums = args[0]
-        res = []
-        nums.sort()
-        for i, n in enumerate(nums):
-            if nums[i-1] == n and i < len(nums):
-                continue
+        arr = args[0]
+        
+        counter = 0
+        for i in range(len(arr)):
+            while i != arr[i] - 1:
+                cur_val = arr[i]
+                swap_idx = arr[i] - 1
+                swap_val = arr[swap_idx]
+                arr[i] = swap_val
+                arr[swap_idx] = cur_val
+                counter += 1
+        return counter  
                 
-            l, r = i + 1, len(nums) -1 
-
-            while l < r:
-                three_s = nums[l] + nums[r] + n
-                if three_s < 0:
-                    l += 1
-                elif three_s > 0:
-                    r -= 1
-                else:
-                    res.append([n, nums[l], nums[r]])
-                    l += 1
-                    while l < r and nums[l] == nums[l-1]:
-                        l += 1
-                    
-        return res
-
-            
+         
+     
 
 
 
@@ -47,7 +38,8 @@ def test_cases():
     return [
         # Example: (inputs, expected_output)
 
-        ([[-1,0,1,2,-1,-4]], [[-1,-1,2],[-1,0,1]]),     
+        ([[1, 3, 5, 2, 4, 6, 7]], [3]),     
+
 
 
     ]
