@@ -24,6 +24,7 @@ class TikTokPrep:
 
     # 56. Merge Intervals - 32 - https://leetcode.com/problems/merge-intervals/description/
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+    
         merge = []
         intervals = intervals.sort(key = lambda x : x[0])
         for interval in intervals:
