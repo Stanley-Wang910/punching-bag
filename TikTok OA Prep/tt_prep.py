@@ -11,6 +11,20 @@ class TikTokPrep:
                 counter += 1
         return counter  
                 
+    # 66. Plus One - 8:23 - https://leetcode.com/problems/plus-one/description/
+    def plusOne(self, digits: List[int]) -> List[int]:
+        num_s = ''
+        for i in digits:
+            num_s += str(i)
+        num_s = int(num_s) + 1
+        num_s= str(num_s)
+        res  = list(num_s)
+        res = [int(i) for i in res]
+        return res
+
+
+
+
 
 
 
