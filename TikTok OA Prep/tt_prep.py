@@ -22,6 +22,24 @@ class TikTokPrep:
         res = [int(i) for i in res]
         return res
 
+    # 56. Merge Intervals - 32 - https://leetcode.com/problems/merge-intervals/description/
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        merge = []
+        intervals = intervals.sort(key = lambda x : x[0])
+        for interval in intervals:
+            if not merge or merge[-1][1] >= interval[0]:
+                merge.append(interval)
+
+            else: 
+                # Merge current interval with last one in merge[]
+                merge[1][-1] =  max(merge[1][-1], interval[1])
+
+        return merge
+
+
+
+
+
 
 
 
