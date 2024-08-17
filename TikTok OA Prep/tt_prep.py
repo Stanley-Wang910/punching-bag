@@ -63,10 +63,34 @@ class TikTokPrep:
         return True
 
         
+    # 1249. Minimum Remove to Make Valid Parentehses
+    def minRemoveToMakeValid(self, s: str) -> str:
+        res = []
+        count = 0
+        for c in s:
+            if c == "(":
+                res.append(c)
+                count += 1
+            elif c == ")" and count > 0:
+                res.append(c)
+                count -=1
+            elif c != ")":
+                res.append(c)
+
+        filter_res = []
+        i =  len(res) - 1 
+        while i >= 0:
+            if res[i] == "(" and count > 0:
+                count -= 1
+            else:
+                filter_res.append(res[i])
+            i -= 1
+        print(filter_res)
+        return "".join(filter_res[::-1])
+                
+
 
      
-
-
 
 
 
