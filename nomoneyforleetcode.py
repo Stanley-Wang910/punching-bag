@@ -27,12 +27,8 @@ class Solution:
                 counter += 1
         return counter  
                 
-         
+
      
-
-
-
-
 
 def test_cases():
     return [

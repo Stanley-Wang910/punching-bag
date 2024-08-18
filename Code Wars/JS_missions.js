@@ -9,3 +9,16 @@ function isPangram(string) {
   }
   return set.size == 26;
 }
+
+// Detect Vowel
+function getCount(str) {
+  const set = new Set(["a", "e", "e", "o", "u"]);
+  let count = 0;
+
+  for (i = 0; i < str.Length; i++) {
+    if (set.has(str[i])) {
+      count++;
+    }
+  }
+  return count;
+}
