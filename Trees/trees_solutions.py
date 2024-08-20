@@ -44,3 +44,27 @@ class Trees:
         return res 
            
         
+    # 110. Balanced Binary Tree - 1 Hour
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        
+        self.abs_h = 0
+         
+        def dfs(root):
+            if not root: return [True, 0]
+            
+            right_d = dfs(root.right)
+            left_d = dfs(root.left)
+            balanced = (left_d[0] and right_d[0] and abs(left_d[1] - right_d[1]) <= 1)
+
+            return [balanced, max(right_d[1], left_d[1]) + 1]
+            
+        return dfs(root)[0]
+
+
+        
+ 
+
+
+            
+
+
