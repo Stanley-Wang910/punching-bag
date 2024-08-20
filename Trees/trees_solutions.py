@@ -21,3 +21,26 @@ class Trees:
         right_depth = self.maxDepth(root.right)
 
         return max(left_depth, right_depth) + 1
+
+
+    # 543. Diameter of Binary Tree - Easy - 39 min - https://leetcode.com/problems/diameter-of-binary-tree/
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+
+        # keep global res 
+        self.res = 0
+
+        def dfs(root):
+            if not root:
+                return 0
+            
+            left_depth = dfs(root.left)
+            right_depth = dfs(root.right)
+            
+            res = max(res, left_depth + right_depth)
+            return max(left_depth, right_depth) + 1
+
+        dfs(root)
+
+        return res 
+           
+        
