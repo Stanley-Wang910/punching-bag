@@ -1,4 +1,4 @@
 # punching-bag
 working on technique
 
-easily configurable debugger for leetcode hackerrank style questions.
+easily configurable debugger for leetcode hackerrank style questions!
