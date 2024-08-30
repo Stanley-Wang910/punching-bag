@@ -44,6 +44,7 @@ class ArraysHashing:
     # Review 49, 13:21 min 
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         string_dict = {}
+        string_s = ''
         for s in strs:
             key = ''.join(sorted(s))
             if key in string_dict.keys():
