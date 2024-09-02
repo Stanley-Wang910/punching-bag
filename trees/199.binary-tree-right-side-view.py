@@ -1,6 +1,3 @@
-import collections
-
-
 def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
     res = []
     q = collections.deque()
