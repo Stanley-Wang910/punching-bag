@@ -1,17 +1,21 @@
-def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-    res = []
+import collections
+
+
+def goodNodes(self, root):
     q = collections.deque()
     q.append(root)
+    res = []
 
     while q:
-        q_len = len(q)
-        level = []
-        for i in range(q_len):
+        right_node = None
+        len_q = len(q)
+        for i in range(len_q):
             node = q.popleft()
             if node:
-                level.append(node.val)
+                right_node = node
                 q.append(node.left)
                 q.append(node.right)
-        if level:
-            res.append(level[-1])
+
+        if right_node:
+            res.append(right_node.val)
     return res

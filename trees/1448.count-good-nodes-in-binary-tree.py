@@ -1,21 +1,13 @@
-import collections
+def goodNodes(self, root) -> int:
+    def dfs(node, max_val):
+        if not node:
+            return 0
+        num_good = 1 if node.val >= max_val else 0
+        max_val = max(max_val, node.val)
 
+        num_good += dfs(node.right, max_val)
+        num_good += dfs(node.left, max_val)
 
-def goodNodes(self, root):
-    q = collections.deque()
-    q.append(root)
-    res = []
+        return num_good
 
-    while q:
-        right_node = None
-        len_q = len(q)
-        for i in range(len_q):
-            node = q.popleft()
-            if node:
-                right_node = node
-                q.append(node.left)
-                q.append(node.right)
-
-        if right_node:
-            res.append(right_node.val)
-    return res
+    return dfs(root, root.val)
