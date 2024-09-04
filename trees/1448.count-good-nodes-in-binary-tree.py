@@ -1,21 +1,21 @@
-def goodNodes(self, root) -> int:
-    # dfs approach
-    # init walk with node and its val as the current max
-    # the recursive walk returns the number of good nodes res
-    # considered good if the current node val is bigger tan current max val that's been passed down alongside it
-    # repeat left and right subtree, return back up
-    def dfs(node, max_val):
-        if not node:
-            return 0
+import collections
 
-        if node.val >= max_val:
-            res = 1  # each res var scoped to its own recursive iteration
-            max_val = node.val
-        else:
-            res = 0
-        res += dfs(node.left, max_val)
-        res += dfs(node.right, max_val)
 
-        return res
+def goodNodes(self, root):
+    q = collections.deque()
+    q.append(root)
+    res = []
 
-    return dfs(root, root.val)
+    while q:
+        right_node = None
+        len_q = len(q)
+        for i in range(len_q):
+            node = q.popleft()
+            if node:
+                right_node = node
+                q.append(node.left)
+                q.append(node.right)
+
+        if right_node:
+            res.append(right_node.val)
+    return res
