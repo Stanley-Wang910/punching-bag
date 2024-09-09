@@ -1,6 +1,5 @@
-
 class LinkedList:
-    # 206. Reverse Linked List / Easy / 7:36 minutes / (https://leetcode.com/problems/reverse-linked-list/)
+    # 206.  Reverse Linked List / Easy / 7:36 minutes / (https://leetcode.com/problems/reverse-linked-list/)
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # Iterative Solution
         # T O(n) M O(1)
@@ -11,6 +10,7 @@ class LinkedList:
             prev = cur
             cur = temp
         return prev
+
         #################################################################
         # Recursive Solution
         def reverse(cur, prev):
@@ -20,13 +20,15 @@ class LinkedList:
                 next = cur.next
                 cur.next = prev
                 return reverse(next, cur)
-        
+
         return reverse(head, None)
-        
+
     # 21. Merge Two Sorted Lists / Easy / 15 minutes / (https://leetcode.com/problems/merge-two-sorted-lists/)
-    def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    def mergeTwoLists(
+        self, l1: Optional[ListNode], l2: Optional[ListNode]
+    ) -> Optional[ListNode]:
         dummy = ListNode()
-        tail = dummy # Tail pointer
+        tail = dummy  # Tail pointer
 
         while l1 and l2:
             if l1.val < l2.val:
@@ -44,7 +46,6 @@ class LinkedList:
 
         return dummy.next
 
-
     # 143. Reorder List / Medium / 37 minutes / (https://leetcode.com/problems/reorder-list/)
     def reorderList(self, head: Optional[ListNode]) -> None:
         # Get first and second half of LL with slow and fast pointer
@@ -61,15 +62,15 @@ class LinkedList:
             temp = second.next
             second.next = prev
             prev = second
-            second = temp # second half at null, prev set to last node
+            second = temp  # second half at null, prev set to last node
 
-        # merge two halfs 
-        first,second = head, prev 
+        # merge two halfs
+        first, second = head, prev
         # second half may be shorter
         while second:
             temp1, temp2 = first.next, second.next
             first.next = second
-            second.next =  temp1
+            second.next = temp1
             first = temp1
             second = temp2
 
@@ -86,20 +87,21 @@ class LinkedList:
             second = second.next
         print(first, second)
         first.next = first.next.next
-        return dummy.next # in case you have to remove head of node, dummy.next will always point to the head of the LL
+        return (
+            dummy.next
+        )  # in case you have to remove head of node, dummy.next will always point to the head of the LL
 
-        
     # 138. Copy List with Random Pointer / Medium / 36 minutes / (https://leetcode.com/problems/copy-list-with-random-pointer/)
-    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+    def copyRandomList(self, head: "Optional[Node]") -> "Optional[Node]":
         # Two Passes
         # Node Creation, then Linkage
-        hash_copy = { None: None }
+        hash_copy = {None: None}
         cur = head
         # Node Creation
         while cur:
             hash_copy[cur] = Node(cur.val)
             cur = cur.next
-        
+
         # Linkage
         cur = head
         while cur:
@@ -111,7 +113,9 @@ class LinkedList:
         return hash_copy[head]
 
     # 2. Add Two Numbers / Medium / 46 minutes / (https://leetcode.com/problems/add-two-numbers/)
-    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    def addTwoNumbers(
+        self, l1: Optional[ListNode], l2: Optional[ListNode]
+    ) -> Optional[ListNode]:
         # Need Carry
         dummy = ListNode()
         cur = dummy
@@ -120,7 +124,7 @@ class LinkedList:
             v1 = l1.val if l1 else 0
             v2 = l2.val if l2 else 0
             val = v1 + v2 + carry
-            carry = val // 10 
+            carry = val // 10
             val = val % 10
             cur.next = ListNode(val)
             l1 = l1.next if l1 else None
@@ -130,7 +134,7 @@ class LinkedList:
 
     # 141. Linked List Cycle / Easy / 20 minutes / (https://leetcode.com/problems/linked-list-cycle/)
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        slow = head 
+        slow = head
         fast = head
         while fast and fast.next:
             slow = slow.next
@@ -140,12 +144,12 @@ class LinkedList:
         return False
 
     # 287. Find the Duplicate Number / Medium / 31 minutes / (https://leetcode.com/problems/find-the-duplicate-number/)
-    def findDuplicate(self, nums: List[int]) -> int:# LL Cycle implementation
+    def findDuplicate(self, nums: List[int]) -> int:  # LL Cycle implementation
         # O(n) M O(1) Floyd's Cycle Finding Algorithm
         slow, fast = 0, 0
         while True:
-            slow = nums[slow] # the 'node' the value points at
-            fast = nums[nums[fast]] 
+            slow = nums[slow]  # the 'node' the value points at
+            fast = nums[nums[fast]]
             if slow == fast:
                 break
 
@@ -154,8 +158,7 @@ class LinkedList:
             slow = nums[slow]
             slow2 = nums[slow2]
             if slow == slow2:
-                return slow # The number 
-
+                return slow  # The number
 
     # 146. LRU Cache / Medium / 50 minutes / (https://leetcode.com/problems/lru-cache/)
     class Node:
@@ -168,7 +171,7 @@ class LinkedList:
         def __init__(self, capacity: int):
             self.cache = {}
             self.capacity = capacity
-            self.LRU, self.MRU = Node(0,0), Node(0,0)
+            self.LRU, self.MRU = Node(0, 0), Node(0, 0)
             self.LRU.next = self.MRU
             self.MRU.prev = self.LRU
 
@@ -179,7 +182,7 @@ class LinkedList:
             mru.prev = node
             node.next = mru
             node.prev = prv
-        
+
         def remove(self, node):
             left = node.prev
             right = node.next
@@ -193,15 +196,17 @@ class LinkedList:
                 return self.cache[key].val
             else:
                 return -1
-            
+
         def put(self, key: int, val: int) -> None:
             if key in self.cache:
-                self.remove(self.cache[key]) # access prev initialized node
+                self.remove(self.cache[key])  # access prev initialized node
             self.cache[key] = Node(key, val)
             self.insert(self.cache[key])
 
             if len(self.cache) > self.capacity:
-                lru = self.LRU.next # create reference so hash deletion will point to correct node
+                lru = (
+                    self.LRU.next
+                )  # create reference so hash deletion will point to correct node
                 self.remove(lru)
                 del self.cache[lru.key]
-                
+
