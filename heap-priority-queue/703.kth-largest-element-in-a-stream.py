@@ -19,4 +19,4 @@ class KthLargest(object):
 
 # Your KthLargest object will be instantiated and called as such:
 # obj = KthLargest(k, nums)
-# param_1 = obj.add(val)
+# param_1 = obj.add(val))
