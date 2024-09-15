@@ -1,4 +1,4 @@
-# Sliding Window
+ # Sliding Window
 class SlidingWindow:
     # 121. Best Time to Buy and Sell Stock / Easy / 9 minutes / (https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
     def maxProfit(self, prices: List[int]) -> int:

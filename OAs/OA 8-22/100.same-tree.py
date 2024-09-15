@@ -4,6 +4,7 @@
 # [100] Same Tree
 #
 
+
 # @lc code=start
 # Definition for a binary tree node.
 # class TreeNode:
@@ -16,15 +17,11 @@ class Solution:
         # One null, the other not!
         if not p and not q:
             return True
-        elif not p or not q or p.val != q.val: 
+        elif not p or not q or p.val != q.val:
             return False
 
         # Return the AND of both bool results to determine Sameness
         return (self.isSameTree(p.left, q.left)) and (self.isSameTree(p.right, q.right))
-        
 
-
-      
 
 # @lc code=end
-
